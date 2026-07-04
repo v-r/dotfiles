@@ -1,0 +1,8 @@
+#!/bin/bash
+# Runs on `chezmoi apply` whenever the Brewfile changes.
+# Brewfile hash: {{ include "Brewfile" | sha256sum }}
+set -eu
+
+# Presence-only, like ansible's `state: present` was — no mass upgrades on apply.
+export HOMEBREW_BUNDLE_NO_UPGRADE=1
+brew bundle --file="{{ .chezmoi.sourceDir }}/Brewfile"
