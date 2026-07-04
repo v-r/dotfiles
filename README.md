@@ -1,7 +1,10 @@
 # dotfiles
 
-Managed with [chezmoi](https://chezmoi.io). Software installation lives in the
-separate `ansible` repo (`brew` packages via playbook); this repo owns configs only.
+Managed with [chezmoi](https://chezmoi.io). This repo owns both configs and
+software: packages in `Brewfile` install automatically on `chezmoi apply`
+whenever the Brewfile changes (presence-only, no mass upgrades).
+`install-fonts.sh` (Nerd Fonts, run manually) is kept from the retired
+mac-ansible repo.
 
 ## New machine
 
