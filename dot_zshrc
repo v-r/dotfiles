@@ -201,6 +201,32 @@ export HISTSIZE=999999999999
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY_TIME
+setopt HIST_FCNTL_LOCK  # lock history file on write; prevents corruption from concurrent shells
+
+# Daily backup of zsh history. Refuses to overwrite the backup if the current
+# history file shrank to less than half the backup's size (truncation guard).
+zsh_history_backup() {
+  emulate -L zsh
+  local backup="$HOME/.zsh_history.backup"
+  local stamp="$HOME/.cache/zsh_history_backup_date"
+  local today="$(date +%Y-%m-%d)"
+  [[ -f $stamp && "$(<$stamp)" == "$today" ]] && return
+  mkdir -p "$HOME/.cache"
+  if [[ -f $backup ]]; then
+    local cur bak
+    cur=$(wc -c <"$HISTFILE") bak=$(wc -c <"$backup")
+    if (( cur * 2 < bak )); then
+      print -u2 "WARNING: $HISTFILE shrank (${cur}B vs ${bak}B backup) — skipping backup, check for truncation"
+      return 1
+    fi
+  fi
+  cp "$HISTFILE" "$backup" && print "$today" >"$stamp"
+}
+[[ -f $HISTFILE ]] && zsh_history_backup
+
+# atuin: SQLite-backed history (never truncates), Ctrl-R search.
+# Must come after fzf so atuin owns the Ctrl-R binding.
+eval "$(atuin init zsh)"
 
 # Redundant compinit block removed for startup speed: oh-my-zsh already ran
 # compinit once above. Running it again re-does the slow compaudit + compdump.
