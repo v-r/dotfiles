@@ -53,4 +53,5 @@ brew "pkgxdev/made/pkgx"
 brew "umputun/apps/revdiff"
 
 # GUI apps
-# cask "orbstack"
+cask "keepassxc"
+cask "orbstack"
