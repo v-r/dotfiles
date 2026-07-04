@@ -1,0 +1,3 @@
+. "$HOME/.cargo/env"
+# mise shims: make mise-managed tools (node, go, ...) visible to non-interactive shells and hooks
+export PATH="$HOME/.local/share/mise/shims:$PATH"
