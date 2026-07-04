@@ -141,8 +141,6 @@ test -e /Users/vitalir/.iterm2_shell_integration.zsh && source /Users/vitalir/.i
 
 source "$HOME/.cargo/env"
 
-source /Users/vitalir/.gvm/scripts/gvm
-
 # bun completions
 [ -s "/Users/vitalir/.bun/_bun" ] && source "/Users/vitalir/.bun/_bun"
 
@@ -184,7 +182,8 @@ function sg () {
   sgpt --shell "$*"
 }
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(mise activate zsh)"
 
 eval "$(zoxide init zsh)"
 
@@ -223,12 +222,6 @@ fpath=(/Users/vitalir/.docker/completions $fpath)
 
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
-
-# fnm
-FNM_PATH="/opt/homebrew/opt/fnm/bin"
-if [ -d "$FNM_PATH" ]; then
-  eval "`fnm env`"
-fi
 
 # zprof
 # >>> ccm function begin >>>
