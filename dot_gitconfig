@@ -1,0 +1,29 @@
+[user]
+	name = v-r
+	email = vitali.rassolov@gmail.com
+; [url "git@github.com:"]
+;	 insteadOf = https://github.com/
+[core]
+  excludesfile = /Users/vitalir/.gitignore_global
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[delta]
+  navigate = true
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+; [url "ssh://git@github.com/"]
+	; insteadOf = https://github.com/
+[commit]
+	template = /Users/vitalir/.stCommitMsg
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

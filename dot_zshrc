@@ -1,0 +1,341 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/Users/vitalir/.oh-my-zsh/custom/completions" $fpath)
+# Redundant compinit removed for startup speed: oh-my-zsh runs compinit once
+# (see `source $ZSH/oh-my-zsh.sh` below). The fpath line above runs before it,
+# so these completions are still picked up.
+# autoload -Uz compinit
+# compinit
+# OPENSPEC:END
+
+# zmodload zsh/zprof
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Then add npm completion
+if command -v npm >/dev/null 2>&1; then
+  source <(npm completion)
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git npm kubectl)
+
+# Startup speed: skip oh-my-zsh's daily completion security audit (compaudit)
+# and its internal compinit so the .zcompdump cache is reused instead of being
+# rebuilt (compdump) on every launch. Must be set BEFORE sourcing oh-my-zsh.
+ZSH_DISABLE_COMPFIX=true
+skip_global_compinit=1
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nvim'
+ fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+. ~/.aliases
+
+eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# . /opt/homebrew/etc/profile.d/z.sh
+test -e /Users/vitalir/.iterm2_shell_integration.zsh && source /Users/vitalir/.iterm2_shell_integration.zsh || true
+
+source "$HOME/.cargo/env"
+
+source /Users/vitalir/.gvm/scripts/gvm
+
+# bun completions
+[ -s "/Users/vitalir/.bun/_bun" ] && source "/Users/vitalir/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# BEGIN SNIPPET: Magento Cloud CLI configuration
+#HOME=${HOME:-'/Users/vitalir'}
+#export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
+#if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
+
+export GO_PATH=/Users/vitalir/go
+export PATH=$PATH:$GO_PATH/bin
+export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl\@1.1/lib/pkgconfig/
+
+# function _load_nvm() {
+#     if [[ -z "$NVM_LOADED" ]] || [[ "$NVM_LOADED" -ne 1 ]]
+#     then
+#         export NVM_DIR="$HOME/.nvm"
+#         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+#         [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+#         export NVM_LOADED=1
+#     fi
+# }
+
+# function node()
+# {
+#   _load_nvm
+#   node $@
+# }
+
+# function nvm() {
+#     _load_nvm
+#     nvm $@
+# }
+
+function sg () {
+  sgpt --shell "$*"
+}
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+eval "$(zoxide init zsh)"
+
+export PATH="/usr/local/opt/qt5/bin:$PATH"
+export PATH=~/flutter/bin:$PATH
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+PATH=~/.console-ninja/.bin:$PATH
+
+export PATH="/Users/vitalir/.claude/local:$PATH"
+
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=999999999999
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY_TIME
+
+# Redundant compinit block removed for startup speed: oh-my-zsh already ran
+# compinit once above. Running it again re-does the slow compaudit + compdump.
+# autoload -Uz compinit
+# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+#   compinit
+# else
+#   compinit -C
+# fi
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/vitalir/.docker/completions $fpath)
+# autoload -Uz compinit
+# compinit
+# End of Docker CLI completions
+
+
+
+
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "`fnm env`"
+fi
+
+# zprof
+# >>> ccm function begin >>>
+# CCM: define a shell function that applies exports to current shell
+ccm() {
+  local script="${XDG_DATA_HOME:-$HOME/.local/share}/ccm/ccm.sh"
+  # Fallback search if the installed script was moved or XDG paths changed
+  if [[ ! -f "$script" ]]; then
+    local default1="${XDG_DATA_HOME:-$HOME/.local/share}/ccm/ccm.sh"
+    local default2="$HOME/.ccm/ccm.sh"
+    if [[ -f "$default1" ]]; then
+      script="$default1"
+    elif [[ -f "$default2" ]]; then
+      script="$default2"
+    fi
+  fi
+  if [[ ! -f "$script" ]]; then
+    echo "ccm error: script not found at $script" >&2
+    return 1
+  fi
+
+  # All commands use eval to apply environment variables
+  case "$1" in
+    ""|"help"|"-h"|"--help"|"status"|"st"|"config"|"cfg"|"save-account"|"delete-account"|"list"|"ls")
+      # These commands don't need eval, execute directly
+      "$script" "$@"
+      ;;
+    *)
+      # All other commands (including pp) use eval to set environment variables
+      eval "$("$script" "$@")"
+      ;;
+  esac
+}
+
+# CCC: Claude Code Commander - switch model and launch Claude Code
+ccc() {
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: ccc <model> [claude-options]"
+    echo ""
+    echo "Examples:"
+    echo "  ccc deepseek                              # Launch with DeepSeek"
+    echo "  ccc pp deepseek                           # Launch with PPINFRA DeepSeek"
+    echo "  ccc glm --dangerously-skip-permissions    # Launch GLM with options"
+    echo ""
+    echo "Available models:"
+    echo "  Official: deepseek, glm, kimi, qwen, claude, opus, longcat"
+    echo "  PPINFRA:  pp deepseek, pp glm, pp kimi, pp qwen"
+    return 1
+  fi
+
+  # Check for pp prefix
+  local use_pp=false
+  local model=""
+  local claude_args=()
+
+  if [[ "$1" == "pp" ]]; then
+    use_pp=true
+    shift
+    model="$1"
+    shift
+  else
+    model="$1"
+    shift
+  fi
+
+  # Collect additional Claude Code arguments
+  claude_args=("$@")
+
+  # Call ccm to set environment variables
+  if $use_pp; then
+    echo "🔄 Switching to PPINFRA $model..."
+    ccm pp "$model" || return 1
+  else
+    echo "🔄 Switching to $model..."
+    ccm "$model" || return 1
+  fi
+
+  echo ""
+  echo "🚀 Launching Claude Code..."
+  echo "   Model: $ANTHROPIC_MODEL"
+  echo "   Base URL: ${ANTHROPIC_BASE_URL:-Default (Anthropic)}"
+  echo ""
+
+  # Launch Claude Code
+  if [[ ${#claude_args[@]} -eq 0 ]]; then
+    exec claude
+  else
+    exec claude "${claude_args[@]}"
+  fi
+}
+# <<< ccm function end <<<
+#
+# Add to your ~/.zshrc or ~/.bashrc
+
+# pnpm
+export PNPM_HOME="/Users/vitalir/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+export PATH=$PATH:$HOME/.maestro/bin
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# opencode
+export PATH=/Users/vitalir/.opencode/bin:$PATH
+
+# nub
+export PATH="$HOME/.nub/bin:$PATH"

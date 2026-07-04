@@ -1,0 +1,36 @@
+alias n=nvim
+alias lg=lazygit
+alias ldo=lazydocker
+alias k=kubectl
+alias kx=kubectx
+alias l='ls -lsha'
+
+alias ghb='gh browse'
+alias kl='kill -9 %'
+
+alias c=claude
+alias p=popd
+alias b=bat
+alias e=exa
+alias ee='exa -la'
+
+alias s=sgpt
+alias keploy="docker run --name keploy-v2 -p 16789:16789 --network keploy-network --privileged --pid=host -v $(pwd):$(pwd) -w $(pwd) -v /sys/fs/cgroup:/sys/fs/cgroup -v /sys/kernel/debug:/sys/kernel/debug -v /sys/fs/bpf:/sys/fs/bpf -v /var/run/docker.sock:/var/run/docker.sock --rm ghcr.io/keploy/keploy"
+
+alias docker-prune='docker image prune -af && docker volume prune -af && docker network prune'
+alias docker-compose='docker compose'
+#alias claude="~/.claude/local/claude"
+alias claude="~/.local/bin/claude"
+
+
+alias claude-work="CLAUDE_CONFIG_DIR=~/.claude-work/ claude"
+alias cw=claude-work
+
+alias claude-personal="CLAUDE_CONFIG_DIR=~/.claude-personal/ claude"
+
+alias cf-personal='cloudflared --origincert ~/.cloudflared/personal/cert.pem'
+alias cf-deal='cloudflared --origincert ~/.cloudflared/deal-ee/cert.pem --config ~/.cloudflared/deal-ee/config.yml'
+# erpflow-ai — Cloudflare tunnel (dev → Vite :5173) + R2. Setup:
+#   erpflow-ai/scripts/dev/cf-tunnel-setup.sh   and   .../r2-setup.sh
+alias cf-erpflow='cloudflared --origincert ~/.cloudflared/erpflow-ai/cert.pem --config ~/.cloudflared/erpflow-ai/config.yml'
+alias r2-erpflow='aws --profile erpflow-r2 s3'

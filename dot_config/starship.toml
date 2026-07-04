@@ -1,0 +1,8 @@
+[kubernetes]
+symbol = "⛵ "
+style = "dimmed green"
+disabled = false
+
+[gcloud]
+disabled = true
+
