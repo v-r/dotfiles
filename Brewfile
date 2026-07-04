@@ -53,5 +53,4 @@ brew "pkgxdev/made/pkgx"
 brew "umputun/apps/revdiff"
 
 # GUI apps
-cask "siyuan"
 # cask "orbstack"
