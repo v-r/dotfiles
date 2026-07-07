@@ -3,6 +3,7 @@
 
 # Core CLI stack
 brew "chezmoi"
+brew "neovim"          # EDITOR; LazyVim config lives in dot_config/nvim
 brew "mise"
 brew "starship"
 brew "atuin"
