@@ -27,9 +27,16 @@ chezmoi cd                # go to this repo to commit/push
 
 ## Notes
 
-- `~/.config/karabiner` is a symlink into `~/.keyboard` (fork: v-r/keyboard);
-  chezmoi tracks only the symlink. Hammerspoon config is no longer tracked —
-  its role (hyper key + window management) moved to Raycast.
+- `~/.config/karabiner/karabiner.json` is vendored here (no longer a symlink
+  into the retired `~/.keyboard` fork). It's a single rule: **Caps Lock ->
+  Escape on tap, Hyper (Cmd+Ctrl+Opt+Shift) on hold**. Karabiner does tap/hold
+  at the driver level, so ESC is reliable in neovim/terminal where Raycast's
+  Hyper Key single-press ESC was not. Raycast owns the Hyper-key *combos*
+  (window management, launchers); Karabiner just produces the Hyper modifier.
+  The `karabiner-elements` cask installs via the Brewfile, but on a new mac you
+  must still approve the driver extension + Input Monitoring in System Settings
+  (unavoidable for any driver-level remapper). Hammerspoon config is no longer
+  tracked — its role moved to Raycast.
 - Tool versions are managed by mise (`.config/mise/config.toml` here for
   globals, `.tool-versions`/`mise.toml` per project). asdf/fnm/gvm are retired.
 

@@ -55,3 +55,4 @@ brew "umputun/apps/revdiff"
 # GUI apps
 cask "keepassxc"
 cask "orbstack"
+cask "karabiner-elements"  # caps -> esc (tap) / hyper (hold); config in dot_config/karabiner
