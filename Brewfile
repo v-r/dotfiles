@@ -15,6 +15,7 @@ brew "git-delta"
 brew "lazygit"
 brew "jq"
 brew "tmux"
+brew "htop"
 
 # Dev tools
 brew "direnv"
