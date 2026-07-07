@@ -43,7 +43,7 @@ brew "python-tk"
 brew "helm"
 brew "kubespy"
 brew "logcli"
-brew "plumber"
+# brew "plumber"  # FIXME: no valid formula/tap (batchcorp tap defunct). Restore with correct tap or drop.
 brew "websocat"
 brew "cloudflared"
 
