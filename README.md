@@ -8,13 +8,48 @@ mac-ansible repo.
 
 ## New machine
 
+**Prerequisites** (fresh macOS — Homebrew and git are assumed by the steps
+below but aren't preinstalled):
+
+```sh
+xcode-select --install    # Command Line Tools (git, compilers)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Add an SSH key to GitHub first, or swap the SSH URL below for the HTTPS one
+(`https://github.com/v-r/dotfiles.git`) to avoid key setup on day one.
+
+**Bootstrap + apply everything:**
+
 ```sh
 brew install chezmoi
 chezmoi init --apply git@github.com:v-r/dotfiles.git
 ```
 
-`run_once_before_10-macos-defaults.sh` applies keyboard/Dock/Finder defaults on
-first apply (log out/in for keyboard settings).
+`chezmoi apply` runs two scripts automatically:
+
+- `run_onchange_darwin-install-packages.sh.tmpl` → `brew bundle` installs the
+  whole `Brewfile` (incl. `karabiner-elements`; the caps→esc config lands at
+  `~/.config/karabiner/karabiner.json`).
+- `run_once_before_10-macos-defaults.sh` → keyboard/Dock/Finder defaults
+  (**log out/in** for keyboard settings to take effect).
+
+**Karabiner approvals** (per-machine, unavoidable for a driver-level remapper —
+the cask installs the app but macOS gates driver access behind manual toggles):
+
+1. Launch **Karabiner-Elements** once.
+2. System Settings → General → Login Items & Extensions → **Driver Extensions**
+   → enable Karabiner's `.Karabiner-VirtualHIDDevice`.
+3. System Settings → Privacy & Security → **Input Monitoring** → enable
+   Karabiner-Elements (+ its `karabiner_grabber`/`observer` helpers if asked).
+4. System Settings → Keyboard → **Modifier Keys** → set Caps Lock to
+   **No Action** so macOS's own remap doesn't fight Karabiner.
+
+Verify: tap Caps → Esc; hold Caps + a key → Hyper (⌘⌃⌥⇧).
+
+**Finish up:** install Raycast and import your private `.rayconfig` for the
+Hyper-key combos (see the Raycast note below); optionally run
+`./install-fonts.sh` for Nerd Fonts.
 
 ## Daily use
 
@@ -35,8 +70,11 @@ chezmoi cd                # go to this repo to commit/push
   (window management, launchers); Karabiner just produces the Hyper modifier.
   The `karabiner-elements` cask installs via the Brewfile, but on a new mac you
   must still approve the driver extension + Input Monitoring in System Settings
-  (unavoidable for any driver-level remapper). Hammerspoon config is no longer
-  tracked — its role moved to Raycast.
+  (unavoidable for any driver-level remapper). Karabiner rewrites this file on
+  GUI changes, so if you tweak rules there, re-capture with
+  `chezmoi add ~/.config/karabiner/karabiner.json` to keep the repo
+  authoritative. Hammerspoon config is no longer tracked — its role moved to
+  Raycast.
 - Tool versions are managed by mise (`.config/mise/config.toml` here for
   globals, `.tool-versions`/`mise.toml` per project). asdf/fnm/gvm are retired.
 
