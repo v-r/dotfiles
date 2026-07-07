@@ -1,6 +1,14 @@
+# Homebrew: .zprofile sets this for login shells, but non-login interactive
+# shells (e.g. cmux, some IDE/terminal splits) skip .zprofile. Load brew here
+# too if it hasn't been already, so brew-installed tools (starship, fzf, ...)
+# are on PATH. Idempotent: the guard skips the eval when brew is already found.
+if ! command -v brew >/dev/null 2>&1 && [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # OPENSPEC:START
 # OpenSpec shell completions configuration
-fpath=("/Users/vitalir/.oh-my-zsh/custom/completions" $fpath)
+fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
 # Redundant compinit removed for startup speed: oh-my-zsh runs compinit once
 # (see `source $ZSH/oh-my-zsh.sh` below). The fpath line above runs before it,
 # so these completions are still picked up.
@@ -137,12 +145,12 @@ eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # . /opt/homebrew/etc/profile.d/z.sh
-test -e /Users/vitalir/.iterm2_shell_integration.zsh && source /Users/vitalir/.iterm2_shell_integration.zsh || true
+test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
 
-source "$HOME/.cargo/env"
+# Rust is managed by mise; cargo/rustc come from mise shims (~/.cargo/env no longer sourced).
 
 # bun completions
-[ -s "/Users/vitalir/.bun/_bun" ] && source "/Users/vitalir/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -153,7 +161,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 #export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 #if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
 
-export GO_PATH=/Users/vitalir/go
+export GO_PATH=$HOME/go
 export PATH=$PATH:$GO_PATH/bin
 export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl\@1.1/lib/pkgconfig/
 
@@ -194,7 +202,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 PATH=~/.console-ninja/.bin:$PATH
 
-export PATH="/Users/vitalir/.claude/local:$PATH"
+export PATH="$HOME/.claude/local:$PATH"
 
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=999999999999
@@ -338,7 +346,7 @@ ccc() {
 # Add to your ~/.zshrc or ~/.bashrc
 
 # pnpm
-export PNPM_HOME="/Users/vitalir/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -349,7 +357,7 @@ export PATH=$PATH:$HOME/.maestro/bin
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
 # opencode
-export PATH=/Users/vitalir/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
 
 # nub
 export PATH="$HOME/.nub/bin:$PATH"

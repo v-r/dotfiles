@@ -1,3 +1,4 @@
-. "$HOME/.cargo/env"
+# Rust is managed by mise (shims added below); add cargo-installed binaries to PATH if present.
+[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
 # mise shims: make mise-managed tools (node, go, ...) visible to non-interactive shells and hooks
 export PATH="$HOME/.local/share/mise/shims:$PATH"
