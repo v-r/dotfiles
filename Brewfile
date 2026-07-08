@@ -17,6 +17,7 @@ brew "lazygit"
 brew "jq"
 brew "tmux"
 brew "htop"
+brew "ncdu"            # disk usage TUI
 
 # Dev tools
 brew "direnv"
