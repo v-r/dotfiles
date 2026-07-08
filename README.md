@@ -77,6 +77,16 @@ chezmoi cd                # go to this repo to commit/push
   Raycast.
 - Tool versions are managed by mise (`.config/mise/config.toml` here for
   globals, `.tool-versions`/`mise.toml` per project). asdf/fnm/gvm are retired.
+- `Library/Application Support/iTerm2/Scripts/AutoLaunch/fork_claude.py` is an
+  iTerm2 Python API script (auto-run by iTerm2 on launch) that forks the Claude
+  Code session in the current pane into a vertical split. It walks the shell's
+  descendant PIDs to find Claude's session id + `CLAUDE_CONFIG_DIR` from
+  `~/.claude*/sessions/<pid>.json`, then runs
+  `claude --resume <id> --fork-session` in the new pane (falling back to
+  `--continue` if no session is found). Bind it to a key via iTerm2 →
+  Settings → Keys with the "Invoke Script Function" action calling
+  `fork_claude(session_id: id)`. Requires iTerm2's Python runtime (Scripts →
+  Manage → Install Python Runtime).
 
 ## Raycast
 
