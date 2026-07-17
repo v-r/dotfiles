@@ -48,6 +48,7 @@ brew "logcli"
 # brew "plumber"  # FIXME: no valid formula/tap (batchcorp tap defunct). Restore with correct tap or drop.
 brew "websocat"
 brew "cloudflared"
+cask "gcloud-cli"      # Google Cloud SDK: gcloud/gsutil/bq symlinked into bin; completion wired in dot_zshrc
 
 # Third-party taps
 brew "saulpw/vd/visidata"

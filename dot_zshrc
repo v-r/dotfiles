@@ -236,6 +236,13 @@ zsh_history_backup() {
 # Must come after fzf so atuin owns the Ctrl-R binding.
 eval "$(atuin init zsh)"
 
+# gcloud (google-cloud-sdk cask): source zsh completion if present. The
+# gcloud/gsutil/bq binaries are already on PATH via Homebrew's bin symlinks;
+# only the completion needs sourcing. Guarded so non-gcloud machines don't error.
+_gcloud_inc="/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc"
+[[ -f "$_gcloud_inc" ]] && source "$_gcloud_inc"
+unset _gcloud_inc
+
 # Redundant compinit block removed for startup speed: oh-my-zsh already ran
 # compinit once above. Running it again re-does the slow compaudit + compdump.
 # autoload -Uz compinit
