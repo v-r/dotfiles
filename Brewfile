@@ -42,6 +42,7 @@ brew "tcl-tk"
 brew "python-tk"
 
 # Infra / k8s
+brew "ansible"         # includes ansible-vault
 brew "helm"
 brew "kubespy"
 brew "logcli"
