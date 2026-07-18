@@ -49,6 +49,7 @@ brew "logcli"
 brew "websocat"
 brew "cloudflared"
 cask "gcloud-cli"      # Google Cloud SDK: gcloud/gsutil/bq symlinked into bin; completion wired in dot_zshrc
+cask "codex"           # OpenAI Codex CLI: https://github.com/openai/codex
 
 # Third-party taps
 brew "saulpw/vd/visidata"
