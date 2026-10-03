@@ -1,0 +1,39 @@
+onboarding = false
+
+[theme]
+name = "rose-pine"
+auto_switch = false
+
+# Prefix stays at the ctrl+b default on purpose: Ghostty translates Cmd
+# chords into \x02-prefixed sequences, so the prefix is rarely typed by hand.
+# Changing it here means updating every keybind in ~/.config/ghostty/config.
+
+# Fork the focused Claude agent, resuming the same conversation under a fresh
+# session id. "here" = sibling tab in this workspace, same folder (try a
+# different approach on the same code). "new" = separate workspace, a
+# fork/<stamp> git worktree when the cwd is a repo.
+[[keys.command]]
+key = "prefix+f"
+type = "shell"
+command = "{{ .chezmoi.homeDir }}/.config/herdr/fork-agent.sh here"
+
+[[keys.command]]
+key = "prefix+shift+f"
+type = "shell"
+command = "{{ .chezmoi.homeDir }}/.config/herdr/fork-agent.sh new"
+
+# "split" = fork into a pane beside the current one, same folder (side-by-side
+# comparison of two approaches without leaving the tab).
+[[keys.command]]
+key = "prefix+alt+f"
+type = "shell"
+command = "{{ .chezmoi.homeDir }}/.config/herdr/fork-agent.sh split"
+
+[ui]
+copy_on_select = true
+
+[ui.toast]
+delivery = "system"
+
+[experimental]
+kitty_graphics = true
